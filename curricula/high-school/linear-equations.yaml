@@ -1,0 +1,170 @@
+id: high_school.algebra.linear_equations
+domain: high_school
+locale: en
+fallbackLocales: [de]
+title:
+  en: Linear equations in one variable
+  de: Lineare Gleichungen mit einer Variablen
+goalPrompt:
+  en: Understand what "=" means, then solve one- and two-step linear equations.
+  de: Verstehen, was „=“ bedeutet, dann ein- und zweischrittige lineare Gleichungen lösen.
+diagnosticOrder:
+  - hs.algebra.equals_meaning
+  - hs.algebra.solve_one_step
+delayedAssessmentTaskIds:
+  - hs.algebra.delayed.balanced
+competencies:
+  - id: hs.algebra.equals_meaning
+    title:
+      en: Meaning of equals
+      de: Bedeutung des Gleichheitszeichens
+    prerequisites: []
+    learnerShouldBeAbleTo:
+      - en: Treat "=" as a statement that both sides have the same value, not as a place to write an answer.
+      - de: „=“ als Gleichheit beider Seiten verstehen, nicht als Stelle für das Ergebnis.
+    commonMisconceptionIds: [equals_as_answer_slot]
+  - id: hs.algebra.balance_principle
+    title:
+      en: Balance principle
+      de: Waage-Prinzip
+    prerequisites: [hs.algebra.equals_meaning]
+    learnerShouldBeAbleTo:
+      - en: Explain that an operation must be applied to both sides.
+      - de: Erklären, dass eine Operation auf beide Seiten angewandt werden muss.
+    commonMisconceptionIds: [operate_on_one_side]
+  - id: hs.algebra.solve_one_step
+    title:
+      en: One-step equations
+      de: Einschrittige Gleichungen
+    prerequisites: [hs.algebra.equals_meaning]
+    learnerShouldBeAbleTo:
+      - en: Solve equations such as x + 5 = 12.
+      - de: Gleichungen wie x + 5 = 12 lösen.
+    commonMisconceptionIds: [equals_as_answer_slot]
+  - id: hs.algebra.solve_two_step
+    title:
+      en: Two-step equations
+      de: Zweischrittige Gleichungen
+    prerequisites: [hs.algebra.solve_one_step, hs.algebra.balance_principle]
+    learnerShouldBeAbleTo:
+      - en: Solve equations such as 3x + 2 = 11.
+      - de: Gleichungen wie 3x + 2 = 11 lösen.
+    commonMisconceptionIds: []
+  - id: hs.algebra.transfer_unseen
+    title:
+      en: Unseen forms
+      de: Unbekannte Formen
+    prerequisites: [hs.algebra.solve_two_step]
+    learnerShouldBeAbleTo:
+      - en: Transfer the same idea to an equation not seen in practice.
+      - de: Die Idee auf eine unbekannte Gleichung übertragen.
+    commonMisconceptionIds: [equals_as_answer_slot]
+misconceptions:
+  - id: equals_as_answer_slot
+    competencyId: hs.algebra.equals_meaning
+    hypothesis:
+      en: Treats "=" as the place where the answer goes (left-to-right operation, write the total after equals).
+      de: Behandelt „=“ als Stelle für das Ergebnis (links ausrechnen, Total hinter das Gleichheitszeichen schreiben).
+  - id: operate_on_one_side
+    competencyId: hs.algebra.balance_principle
+    hypothesis:
+      en: Applies inverse operations to only one side of the equation.
+      de: Wendet Umkehroperationen nur auf einer Seite an.
+tasks:
+  - id: hs.algebra.equals.8plus4
+    competencyId: hs.algebra.equals_meaning
+    type: fill_blank
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      en: "Fill the box so both sides are equal: 8 + 4 = □ + 5"
+      de: "Fülle das Kästchen so, dass beide Seiten gleich sind: 8 + 4 = □ + 5"
+    expected: ["7"]
+    misconceptionPatterns:
+      - match: "^12$"
+        misconceptionId: equals_as_answer_slot
+  - id: hs.algebra.equals.5plus3
+    competencyId: hs.algebra.equals_meaning
+    type: fill_blank
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      en: "Fill the box so both sides are equal: 5 + 3 = □ + 2"
+      de: "Fülle das Kästchen so, dass beide Seiten gleich sind: 5 + 3 = □ + 2"
+    expected: ["6"]
+    misconceptionPatterns:
+      - match: "^8$"
+        misconceptionId: equals_as_answer_slot
+  - id: hs.algebra.equals.9plus6
+    competencyId: hs.algebra.equals_meaning
+    type: fill_blank
+    interventions: [contrast_examples, guided_example, retrieval_practice]
+    prompt:
+      en: "Your turn: 9 + 6 = □ + 4"
+      de: "Du bist dran: 9 + 6 = □ + 4"
+    expected: ["11"]
+    misconceptionPatterns:
+      - match: "^15$"
+        misconceptionId: equals_as_answer_slot
+  - id: hs.algebra.equals.hinted
+    competencyId: hs.algebra.equals_meaning
+    type: fill_blank
+    interventions: [hint]
+    prompt:
+      en: "Hint: the two sides must be the same amount. 7 + 2 = □ + 3"
+      de: "Hinweis: beide Seiten müssen denselben Betrag haben. 7 + 2 = □ + 3"
+    expected: ["6"]
+    misconceptionPatterns:
+      - match: "^9$"
+        misconceptionId: equals_as_answer_slot
+  - id: hs.algebra.solve.xplus5
+    competencyId: hs.algebra.solve_one_step
+    type: fill_blank
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      en: "Solve for x: x + 5 = 12. What is x?"
+      de: "Löse nach x: x + 5 = 12. Was ist x?"
+    expected: ["7"]
+    misconceptionPatterns:
+      - match: "^12$"
+        misconceptionId: equals_as_answer_slot
+  - id: hs.algebra.delayed.balanced
+    competencyId: hs.algebra.equals_meaning
+    type: fill_blank
+    interventions: [test_transfer]
+    prompt:
+      en: "Unseen item: 7 + 5 = □ + 6"
+      de: "Neue Aufgabe: 7 + 5 = □ + 6"
+    expected: ["6"]
+    transfer: true
+    misconceptionPatterns:
+      - match: "^12$"
+        misconceptionId: equals_as_answer_slot
+contrasts:
+  - misconceptionId: equals_as_answer_slot
+    followUpTaskId: hs.algebra.equals.9plus6
+    copy:
+      en: |
+        These two look similar. Only one is a true equation.
+        8 + 4 = 12
+        8 + 4 = 7 + 5
+        The equals sign does not mean "write the total here."
+        It means both sides are the same amount. 8+4 is 12, and 7+5 is also 12, so 8+4 = 7+5 is true.
+      de: |
+        Diese beiden sehen ähnlich aus. Nur eine Gleichung ist wahr.
+        8 + 4 = 12
+        8 + 4 = 7 + 5
+        Das Gleichheitszeichen heißt nicht „hier das Ergebnis hinschreiben“.
+        Es heißt: beide Seiten haben denselben Wert. 8+4 ist 12, 7+5 ist auch 12, deshalb ist 8+4 = 7+5 wahr.
+workedExamples:
+  - competencyId: hs.algebra.equals_meaning
+    followUpTaskId: hs.algebra.equals.9plus6
+    copy:
+      en: |
+        Watch the two sides, not the right-hand box.
+        6 + 4 = □ + 1
+        Left side is 10. The right side must also be 10, so □ + 1 = 10, □ = 9.
+        If you wrote 10 in the box, you treated "=" as "the answer goes here."
+      de: |
+        Schau auf beide Seiten, nicht nur auf das Kästchen rechts.
+        6 + 4 = □ + 1
+        Links ist 10. Rechts muss auch 10 stehen, also □ + 1 = 10, □ = 9.
+        Wer 10 ins Kästchen schreibt, behandelt „=“ als Ergebnis-Stelle.

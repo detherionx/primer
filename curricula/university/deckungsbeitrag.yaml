@@ -1,0 +1,175 @@
+id: university.bwl.deckungsbeitrag
+domain: university
+locale: de
+fallbackLocales: [en]
+title:
+  de: Deckungsbeitrag
+  en: Contribution margin
+goalPrompt:
+  de: Deckungsbeitrag von Gewinn unterscheiden und in einer einfachen Entscheidung anwenden.
+  en: Distinguish contribution margin from profit and apply it in a simple decision.
+diagnosticOrder:
+  - bwl.cm.definition
+  - bwl.cm.vs_profit
+delayedAssessmentTaskIds:
+  - bwl.cm.delayed.drop
+competencies:
+  - id: bwl.cm.definition
+    title:
+      de: Definition Deckungsbeitrag
+      en: Contribution margin definition
+    prerequisites: []
+    learnerShouldBeAbleTo:
+      - de: Deckungsbeitrag als Erlös minus variable Kosten definieren.
+      - en: Define contribution margin as revenue minus variable costs.
+    commonMisconceptionIds: [cm_equals_profit]
+  - id: bwl.cm.vs_profit
+    title:
+      de: Deckungsbeitrag vs. Gewinn
+      en: Contribution margin vs profit
+    prerequisites: [bwl.cm.definition]
+    learnerShouldBeAbleTo:
+      - de: Erklären, warum ein positiver Deckungsbeitrag kein Gewinn sein muss.
+      - en: Explain why a positive contribution margin is not the same as profit.
+    commonMisconceptionIds: [cm_equals_profit]
+  - id: bwl.cm.calculate
+    title:
+      de: Deckungsbeitrag berechnen
+      en: Calculate contribution margin
+    prerequisites: [bwl.cm.definition]
+    learnerShouldBeAbleTo:
+      - de: DB = Erlös − variable Kosten zahlenmäßig berechnen.
+      - en: Compute CM = revenue − variable costs.
+    commonMisconceptionIds: [subtracts_fixed_costs_too]
+  - id: bwl.cm.decision
+    title:
+      de: Entscheidungsregel
+      en: Decision rule
+    prerequisites: [bwl.cm.vs_profit, bwl.cm.calculate]
+    learnerShouldBeAbleTo:
+      - de: Beurteilen, ob ein Produkt mit positivem DB bei vorhandenen Fixkosten weitergeführt werden sollte.
+      - en: Judge whether to keep a product with positive CM when fixed costs already exist.
+    commonMisconceptionIds: [cm_equals_profit]
+misconceptions:
+  - id: cm_equals_profit
+    competencyId: bwl.cm.vs_profit
+    hypothesis:
+      de: Setzt Deckungsbeitrag mit Gewinn gleich.
+      en: Treats contribution margin as the same thing as profit.
+  - id: subtracts_fixed_costs_too
+    competencyId: bwl.cm.calculate
+    hypothesis:
+      de: Zieht bei der DB-Berechnung auch die Fixkosten ab.
+      en: Subtracts fixed costs when computing contribution margin.
+tasks:
+  - id: bwl.cm.def.formula
+    competencyId: bwl.cm.definition
+    type: multiple_choice
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      de: "Deckungsbeitrag ist …"
+      en: "Contribution margin is …"
+    choices:
+      - { de: "Erlös minus variable Kosten", en: "Revenue minus variable costs" }
+      - { de: "Erlös minus gesamte Kosten", en: "Revenue minus all costs" }
+      - { de: "Gewinn minus Steuern", en: "Profit minus tax" }
+    expected: ["Erlös minus variable Kosten", "Revenue minus variable costs"]
+    misconceptionPatterns:
+      - match: "gesamte Kosten|all costs"
+        misconceptionId: subtracts_fixed_costs_too
+      - match: "Gewinn minus|Profit minus"
+        misconceptionId: cm_equals_profit
+  - id: bwl.cm.vs.truefalse
+    competencyId: bwl.cm.vs_profit
+    type: multiple_choice
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      de: "Ist ein positiver Deckungsbeitrag dasselbe wie Gewinn?"
+      en: "Is a positive contribution margin the same as profit?"
+    choices:
+      - { de: "Nein", en: "No" }
+      - { de: "Ja", en: "Yes" }
+    expected: ["Nein", "No"]
+    misconceptionPatterns:
+      - match: "^Ja$|^Yes$"
+        misconceptionId: cm_equals_profit
+  - id: bwl.cm.vs.again
+    competencyId: bwl.cm.vs_profit
+    type: multiple_choice
+    interventions: [retrieval_practice]
+    prompt:
+      de: "Ein Produkt hat DB = 4.000 € und Fixkosten = 6.000 €. Ist das ein Gewinn?"
+      en: "A product has CM = 4,000 and fixed costs = 6,000. Is that a profit?"
+    choices:
+      - { de: "Nein, Verlust von 2.000 €", en: "No, a loss of 2,000" }
+      - { de: "Ja, Gewinn von 4.000 €", en: "Yes, profit of 4,000" }
+    expected: ["Nein, Verlust von 2.000 €", "No, a loss of 2,000"]
+    misconceptionPatterns:
+      - match: "4\\.000|4,000"
+        misconceptionId: cm_equals_profit
+  - id: bwl.cm.calc.numbers
+    competencyId: bwl.cm.calculate
+    type: fill_blank
+    interventions: [retrieval_practice]
+    prompt:
+      de: "Erlös 20.000 €, variable Kosten 12.000 €, Fixkosten 5.000 €. Deckungsbeitrag in Euro (nur die Zahl)?"
+      en: "Revenue 20,000, variable costs 12,000, fixed costs 5,000. Contribution margin (number only)?"
+    expected: ["8000", "8.000", "8,000"]
+    misconceptionPatterns:
+      - match: "^3000$|^3\\.000$|^3,000$"
+        misconceptionId: subtracts_fixed_costs_too
+  - id: bwl.cm.contrast.followup
+    competencyId: bwl.cm.vs_profit
+    type: multiple_choice
+    interventions: [contrast_examples, guided_example]
+    prompt:
+      de: "Nach der Gegenüberstellung: Kann ein Produkt mit positivem DB trotzdem Verluste machen?"
+      en: "After the contrast: can a product with positive CM still produce a loss?"
+    choices:
+      - { de: "Ja, wenn die Fixkosten höher sind", en: "Yes, if fixed costs are higher" }
+      - { de: "Nein, positiver DB ist Gewinn", en: "No, positive CM is profit" }
+    expected: ["Ja, wenn die Fixkosten höher sind", "Yes, if fixed costs are higher"]
+    misconceptionPatterns:
+      - match: "ist Gewinn|is profit"
+        misconceptionId: cm_equals_profit
+  - id: bwl.cm.delayed.drop
+    competencyId: bwl.cm.decision
+    type: multiple_choice
+    interventions: [test_transfer]
+    prompt:
+      de: "Transfer: Die Fixkosten bleiben sowieso. Produkt A hat DB = +2.000 €, nach Fixkosten anteilig −1.000 €. Weiterführen?"
+      en: "Transfer: Fixed costs remain either way. Product A has CM = +2,000, and −1,000 after allocated fixed costs. Keep it?"
+    choices:
+      - { de: "Ja, der DB deckt einen Teil der Fixkosten", en: "Yes, CM covers part of the fixed costs" }
+      - { de: "Nein, weil es Verlust macht", en: "No, because it makes a loss" }
+    expected: ["Ja, der DB deckt einen Teil der Fixkosten", "Yes, CM covers part of the fixed costs"]
+    transfer: true
+    misconceptionPatterns:
+      - match: "Verlust|makes a loss"
+        misconceptionId: cm_equals_profit
+contrasts:
+  - misconceptionId: cm_equals_profit
+    followUpTaskId: bwl.cm.contrast.followup
+    copy:
+      de: |
+        Zwei Größen, die oft verwechselt werden:
+        Deckungsbeitrag = Erlös − variable Kosten. Das ist der Beitrag zur Deckung der Fixkosten.
+        Gewinn = Deckungsbeitrag − Fixkosten.
+        Ein positiver Deckungsbeitrag kann mit einem negativen Gewinn zusammenfallen.
+      en: |
+        Two quantities people collapse into one:
+        Contribution margin = revenue − variable costs. That is the amount available to cover fixed costs.
+        Profit = contribution margin − fixed costs.
+        A positive contribution margin can still sit next to a loss.
+workedExamples:
+  - competencyId: bwl.cm.vs_profit
+    followUpTaskId: bwl.cm.contrast.followup
+    copy:
+      de: |
+        Erlös 10.000, variable Kosten 6.000, Fixkosten 5.000.
+        DB = 4.000. Gewinn = 4.000 − 5.000 = −1.000.
+        Der Deckungsbeitrag ist positiv, der Gewinn nicht.
+      en: |
+        Revenue 10,000, variable costs 6,000, fixed costs 5,000.
+        CM = 4,000. Profit = 4,000 − 5,000 = −1,000.
+        Contribution margin is positive; profit is not.

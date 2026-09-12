@@ -1,0 +1,200 @@
+id: language.ja.particles
+domain: language
+locale: ja
+fallbackLocales: [de, en]
+title:
+  ja: 助詞 は / が / を / に / で
+  de: Japanische Partikeln は / が / を / に / で
+  en: Japanese particles は / が / を / に / で
+goalPrompt:
+  de: Alltagssätze mit den Partikeln は, が, を, に und で bilden.
+  en: Produce everyday sentences using は, が, を, に and で.
+  ja: は・が・を・に・でを使って短い文を作る。
+diagnosticOrder:
+  - ja.particles.wa
+  - ja.particles.ni
+  - ja.particles.de
+delayedAssessmentTaskIds:
+  - ja.particles.delayed.cafe
+competencies:
+  - id: ja.particles.wa
+    title:
+      ja: は
+      de: Partikel は
+      en: Particle は
+    prerequisites: []
+    learnerShouldBeAbleTo:
+      - de: は als Thema-Marker erkennen und produzieren.
+      - en: Identify and produce は as a topic marker.
+    commonMisconceptionIds: []
+  - id: ja.particles.ga
+    title:
+      ja: が
+      de: Partikel が
+      en: Particle が
+    prerequisites: [ja.particles.wa]
+    learnerShouldBeAbleTo:
+      - de: が als Subjekt-/Fokusmarker von は unterscheiden.
+      - en: Distinguish が as subject/focus from は.
+    commonMisconceptionIds: [wa_equals_ga]
+  - id: ja.particles.wo
+    title:
+      ja: を
+      de: Partikel を
+      en: Particle を
+    prerequisites: []
+    learnerShouldBeAbleTo:
+      - de: を als Objektmarker produzieren.
+      - en: Produce を as a direct-object marker.
+    commonMisconceptionIds: []
+  - id: ja.particles.ni
+    title:
+      ja: に
+      de: Partikel に
+      en: Particle に
+    prerequisites: []
+    learnerShouldBeAbleTo:
+      - de: に als Ziel/Zeitpunkt-Marker verwenden.
+      - en: Use に for destination and points in time.
+    commonMisconceptionIds: [ni_de_interchangeable]
+  - id: ja.particles.de
+    title:
+      ja: で
+      de: Partikel で
+      en: Particle で
+    prerequisites: []
+    learnerShouldBeAbleTo:
+      - de: で als Ort der Handlung und Mittel-Marker verwenden.
+      - en: Use で for location-of-action and means.
+    commonMisconceptionIds: [ni_de_interchangeable]
+misconceptions:
+  - id: ni_de_interchangeable
+    competencyId: ja.particles.de
+    hypothesis:
+      de: Behandelt に und で als austauschbare Ortsmarker.
+      en: Treats に and で as interchangeable location markers.
+      ja: に と で を同じ場所の印だと思っている。
+  - id: wa_equals_ga
+    competencyId: ja.particles.ga
+    hypothesis:
+      de: Behandelt は als grammatikalisches Subjekt.
+      en: Treats は as equivalent to the grammatical subject.
+      ja: は を主語だと思っている。
+tasks:
+  - id: ja.particles.wa.topic
+    competencyId: ja.particles.wa
+    type: multiple_choice
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      de: "Welche Partikel markiert das Thema? ___ 学生です。"
+      en: "Which particle marks the topic? ___ 学生です。"
+      ja: "主題を表す助詞はどれ？ ___ 学生です。"
+    choices:
+      - { de: "は", en: "は", ja: "は" }
+      - { de: "を", en: "を", ja: "を" }
+      - { de: "で", en: "で", ja: "で" }
+    expected: ["は"]
+    misconceptionPatterns: []
+  - id: ja.particles.ni.destination
+    competencyId: ja.particles.ni
+    type: multiple_choice
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      de: "Ziel der Bewegung: 学校___行きます。"
+      en: "Destination: 学校___行きます。"
+      ja: "行き先：学校___行きます。"
+    choices:
+      - { de: "に", en: "に", ja: "に" }
+      - { de: "で", en: "で", ja: "で" }
+      - { de: "を", en: "を", ja: "を" }
+    expected: ["に"]
+    misconceptionPatterns: []
+  - id: ja.particles.de.action_place
+    competencyId: ja.particles.de
+    type: multiple_choice
+    interventions: [diagnostic_question, retrieval_practice]
+    prompt:
+      de: "Ort der Handlung: 図書館___勉強します。"
+      en: "Location of the action: 図書館___勉強します。"
+      ja: "動作の場所：図書館___勉強します。"
+    choices:
+      - { de: "で", en: "で", ja: "で" }
+      - { de: "に", en: "に", ja: "に" }
+      - { de: "は", en: "は", ja: "は" }
+    expected: ["で"]
+    misconceptionPatterns:
+      - match: "^に$"
+        misconceptionId: ni_de_interchangeable
+  - id: ja.particles.de.means
+    competencyId: ja.particles.de
+    type: multiple_choice
+    interventions: [retrieval_practice]
+    prompt:
+      de: "Mittel: バス___行きます。"
+      en: "Means: バス___行きます。"
+      ja: "手段：バス___行きます。"
+    choices:
+      - { de: "で", en: "で", ja: "で" }
+      - { de: "に", en: "に", ja: "に" }
+      - { de: "を", en: "を", ja: "を" }
+    expected: ["で"]
+    misconceptionPatterns:
+      - match: "^に$"
+        misconceptionId: ni_de_interchangeable
+  - id: ja.particles.de.contrast_followup
+    competencyId: ja.particles.de
+    type: multiple_choice
+    interventions: [contrast_examples, guided_example]
+    prompt:
+      de: "Jetzt: 公園___遊びます。 Ort der Handlung — welche Partikel?"
+      en: "Now: 公園___遊びます. Location of action — which particle?"
+      ja: "公園___遊びます。動作の場所は？"
+    choices:
+      - { de: "で", en: "で", ja: "で" }
+      - { de: "に", en: "に", ja: "に" }
+    expected: ["で"]
+    misconceptionPatterns:
+      - match: "^に$"
+        misconceptionId: ni_de_interchangeable
+  - id: ja.particles.delayed.cafe
+    competencyId: ja.particles.de
+    type: multiple_choice
+    interventions: [test_transfer]
+    prompt:
+      de: "Transfer: カフェ___コーヒーを飲みます。"
+      en: "Transfer: カフェ___コーヒーを飲みます。"
+      ja: "カフェ___コーヒーを飲みます。"
+    choices:
+      - { de: "で", en: "で", ja: "で" }
+      - { de: "に", en: "に", ja: "に" }
+    expected: ["で"]
+    transfer: true
+    misconceptionPatterns:
+      - match: "^に$"
+        misconceptionId: ni_de_interchangeable
+contrasts:
+  - misconceptionId: ni_de_interchangeable
+    followUpTaskId: ja.particles.de.contrast_followup
+    copy:
+      de: |
+        に und で sind nicht dasselbe Ortswort.
+        学校に行きます = Ziel der Bewegung.
+        図書館で勉強します = Ort, an dem die Handlung stattfindet.
+        Wenn jemand dort etwas tut, ist es で.
+      en: |
+        に and で are not the same location word.
+        学校に行きます = destination of movement.
+        図書館で勉強します = place where the action happens.
+        If someone does something there, it is で.
+      ja: |
+        に と で は同じではありません。
+        学校に行きます = 行き先。
+        図書館で勉強します = 動作の場所。
+        そこで何かするときは で です。
+workedExamples:
+  - competencyId: ja.particles.de
+    followUpTaskId: ja.particles.de.means
+    copy:
+      de: "Beispiel: レストランで食べます。 Essen findet im Restaurant statt → で."
+      en: "Example: レストランで食べます. Eating happens at the restaurant → で."
+      ja: "例：レストランで食べます。そこで食べるから で。"
