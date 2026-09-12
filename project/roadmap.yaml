@@ -1,0 +1,15 @@
+now:
+  - keep evals red-capable
+  - only add architecture when an eval or human session forces it
+later:
+  - Phase 3 live model provider
+  - push-to-talk voice adapter around the same TutorEngine
+  - visual teaching artifacts
+  - learner-supplied university material
+never_for_mvp:
+  - avatar shop
+  - xp and streaks
+  - teacher dashboard
+  - lms
+  - realtime voice
+  - vector memory
