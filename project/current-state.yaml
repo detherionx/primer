@@ -1,0 +1,21 @@
+as_of: 2026-09-12
+phase: 0-plus-eval-loop
+hypothesis: explicit_learner_model_improves_next_intervention
+slices_locked:
+  language: japanese_particles
+  high_school: linear_equations_equals_meaning
+  university: bwl_deckungsbeitrag
+pilots: adults_only
+edwin: not_a_blocker
+license: none
+model_provider: stub
+db: local_json_with_supabase_schema_ready
+failing_eval_north_star: equals_as_answer_slot
+next_eligible_work:
+  - wire a real ModelProvider behind the existing interface when templates are insufficient
+  - Supabase persistence adapter using supabase/schema.sql
+  - cross-session spaced review
+  - richer misconception resolution
+blocked:
+  - child_facing_high_school_pilots
+  - voice_visual_identity

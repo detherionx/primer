@@ -1,0 +1,46 @@
+learner_state:
+  status: implemented
+  notes: Domain-neutral competencies, mastery, confidence, misconceptions.
+observation:
+  status: implemented
+misconception_detection:
+  status: partial
+  gaps:
+    - resolution_semantics_are_minimal
+    - no_cross_session_review_scheduler
+pedagogical_policy:
+  status: implemented
+  notes: Deterministic, simple, eval-backed.
+text_renderer:
+  status: implemented
+model_provider:
+  status: stub
+web_tutor_loop:
+  status: implemented
+  notes: Local persistence; no live model; no Supabase required.
+delayed_assessment:
+  status: implemented
+auth:
+  status: local_guest
+voice:
+  status: reserved
+visual_canvas:
+  status: reserved
+tutor_identity:
+  status: reserved
+evals:
+  equals_as_answer_slot:
+    status: implemented
+  ni_de_confusion:
+    status: implemented
+  cm_equals_profit:
+    status: implemented
+  hinted_success_not_mastery:
+    status: implemented
+domains:
+  japanese:
+    fixtures: present
+  high_school:
+    fixtures: present
+  university:
+    fixtures: present

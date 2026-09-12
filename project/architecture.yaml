@@ -1,0 +1,23 @@
+core: primer-core
+loop: observe-diagnose-intervene-update-retest
+renderer:
+  default: text
+  allowed: [text]
+  reserved: [voice, visual, interactive]
+layers:
+  intelligence: learner_model + pedagogical_policy
+  modality: text_now
+  identity: not_implemented
+  cosmetics: not_implemented
+adapters:
+  - language
+  - high_school
+  - university
+persistence:
+  local: .data/store.json
+  supabase: supabase/schema.sql
+model_provider: stub/templates
+source_of_truth:
+  intent: notion
+  implementation: git
+  runtime_learner_data: application_db

@@ -1,0 +1,24 @@
+- id: decision-not-message
+  rule: Produce TutorDecision before learner-facing wording.
+- id: core-not-renderer
+  rule: Do not implement voice/visual/interactive by rewriting Primer Core.
+- id: intelligence-not-identity
+  rule: Tutor intelligence, identity and cosmetics stay separable. Cosmetics are not implemented.
+- id: mastery-not-confidence
+  rule: Mastery and confidence are different fields.
+- id: hinted-not-mastered
+  rule: correct_with_hint must not be treated as correct_independent.
+- id: thin-adapters
+  rule: Domain forks in Core are an experimental failure, not a convenience.
+- id: multilingual-data
+  rule: Locale lives on curriculum and learner, not as a German special case in Core.
+- id: public-repo-hygiene
+  rule: No real learner data, secrets, private source material, or copyrighted course dumps in Git.
+- id: adults-first
+  rule: First pilots are adults, including for high-school subject matter.
+- id: evals-can-fail
+  rule: Do not weaken equals-as-answer-slot to keep CI green.
+- id: git-self-sufficient
+  rule: A fresh agent can implement from this repository without Notion.
+- id: autonomy
+  rule: GREEN/YELLOW/RED in AGENTS.md. Never bypass human gates on RED.
